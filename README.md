@@ -1,6 +1,7 @@
 # E-Commerce App
 
 Welcome to the E-Commerce App repository! This Flutter app is designed to provide a seamless e-commerce experience, featuring API handling, authentication, shared preferences, animations, and more.
+#### [Video](https://www.linkedin.com/posts/mohamed-elhalawany-329314220_ecommerce-flutter-dart-activity-7105259895544791040-_FuR?utm_source=share&utm_medium=member_desktop)
 
 ## Table of Contents
 1. [Overview](#overview)
