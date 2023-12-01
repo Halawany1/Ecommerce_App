@@ -48,10 +48,10 @@ The E-Commerce App is a Flutter-based application that leverages various feature
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/e-commerce-app.git
+   git clone https://github.com/Halawany1/Ecommerce_App.git
 1. Navigate to the project directory:
     ```bash
-   cd e-commerce-app
+   cd Ecommerce_App
 2. Install dependencies:
     ```bash
    flutter pub get
