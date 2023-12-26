@@ -15,7 +15,7 @@ class ProductScreen extends StatelessWidget {
   int index;
   int lenght;
 
-  ProductScreen(this.index, this.lenght);
+  ProductScreen(this.index, this.lenght, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class ProductScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             height: 80,
-            decoration: BoxDecoration(
+            decoration:const BoxDecoration(
                 color: Colors.white,
               ),
             child: Column(
@@ -47,7 +47,7 @@ class ProductScreen extends StatelessWidget {
           ):Container(
               width: double.infinity,
               height: 70,
-              decoration: BoxDecoration(
+              decoration:const BoxDecoration(
                   color: Colors.white,
               ),
               child: Column(
@@ -67,16 +67,16 @@ class ProductScreen extends StatelessWidget {
                   cubit.index = 0;
                   Navigator.pop(context);
                 },
-                child: Icon(Icons.arrow_back)),
+                child:const Icon(Icons.arrow_back)),
             backgroundColor: Colors.white,
-            systemOverlayStyle: SystemUiOverlayStyle(
+            systemOverlayStyle:const SystemUiOverlayStyle(
                 statusBarIconBrightness: Brightness.dark,
                 statusBarColor: Colors.white),
           ),
           body: ConditionalBuilder(
             builder: (context) {
               return SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics:const BouncingScrollPhysics(),
                 child: Container(
                   color: Colors.white,
                   child: Column(
@@ -102,7 +102,7 @@ class ProductScreen extends StatelessWidget {
                                       true
                                       ? color
                                       : Colors.grey.withOpacity(0.9),
-                                  child: Icon(
+                                  child:const Icon(
                                     size: 17,
                                     Icons.favorite_border,
                                     color: Colors.white,
@@ -116,7 +116,7 @@ class ProductScreen extends StatelessWidget {
                                 width: 280,
                                 height: 300,
                                 image: NetworkImage(
-                                    '${cubit.homeModel!.data!.products![index].images![cubit.index]}'),
+                                    cubit.homeModel!.data!.products![index].images![cubit.index]),
                               ),
                             ),
                             Positioned(
@@ -127,7 +127,7 @@ class ProductScreen extends StatelessWidget {
                                 onTap: () {
                                   cubit.MoveRight(lenght);
                                 },
-                                child: Icon(Icons.arrow_forward_ios_rounded,
+                                child:const Icon(Icons.arrow_forward_ios_rounded,
                                     color: Colors.black, size: 25),
                               )
                                   : Container(),
@@ -140,7 +140,7 @@ class ProductScreen extends StatelessWidget {
                                 onTap: () {
                                   cubit.MoveLeft();
                                 },
-                                child: Icon(Icons.arrow_back_ios_new,
+                                child:const Icon(Icons.arrow_back_ios_new,
                                     color: Colors.black, size: 25),
                               )
                                   : Container(),
@@ -148,14 +148,14 @@ class ProductScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                             color: Colors.grey.withOpacity(0.2),
-                            borderRadius: BorderRadius.only(
+                            borderRadius:const BorderRadius.only(
                                 topLeft: Radius.circular(40),
                                 topRight: Radius.circular(40))),
                         child: Padding(
@@ -168,7 +168,7 @@ class ProductScreen extends StatelessWidget {
                                 style: GoogleFonts.montserrat(
                                     fontSize: 18, fontWeight: FontWeight.w600),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Row(
@@ -178,7 +178,7 @@ class ProductScreen extends StatelessWidget {
                                     style: GoogleFonts.montserrat(
                                         fontSize: 22, fontWeight: FontWeight.w700),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Text(
                                     '\$${cubit.homeModel!.data!.products![index].price}',
                                     style: GoogleFonts.montserrat(
@@ -186,7 +186,7 @@ class ProductScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
                               Text(
@@ -194,7 +194,7 @@ class ProductScreen extends StatelessWidget {
                                 style: GoogleFonts.montserrat(
                                     fontSize: 18, fontWeight: FontWeight.w600),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Text(
@@ -215,7 +215,7 @@ class ProductScreen extends StatelessWidget {
                 ),
               );
             },
-            fallback: (context) => Center(child: CircularProgressIndicator(color: color,)),
+            fallback: (context) =>const Center(child: CircularProgressIndicator(color: color,)),
             condition:cubit.homeModel!=null ,
 
           ),

@@ -27,8 +27,8 @@ class CartScreen extends StatelessWidget {
             elevation: 15,
             child: Container(
                 width: double.infinity,
-                height: 80,
-                decoration: BoxDecoration(
+                height: 95,
+                decoration:const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                         topRight: Radius.circular(30),
@@ -44,7 +44,7 @@ class CartScreen extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                             color: Colors.grey
                           ),),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           Text('\$${cubit.cartModel!.data!.total}',
                             style: GoogleFonts.montserrat(
                               fontSize: 20,
@@ -52,7 +52,7 @@ class CartScreen extends StatelessWidget {
                           ),),
                         ],
                       ),
-                      Spacer(),
+                      const Spacer(),
                       BuildElevatedButton(
                           width: 250,
                           height: 55,
@@ -69,10 +69,10 @@ class CartScreen extends StatelessWidget {
             condition:cubit.cartModel!=null,
             builder: (context) {
               return  ConditionalBuilder(
-                condition: cubit.cartModel!.data!.cartItems!.length!=0,
+                condition: cubit.cartModel!.data!.cartItems!.isNotEmpty,
                 builder: (context) {
                   return  SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
+                    physics:const BouncingScrollPhysics(),
                     child: Padding(
                       padding: const EdgeInsets.all(18.0),
                       child: Column(
@@ -83,37 +83,37 @@ class CartScreen extends StatelessWidget {
                             style: GoogleFonts.montserrat(fontSize: 22,
                                 fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(height: 20,),
+                          const SizedBox(height: 20,),
                           ListView.separated(
                               itemCount: cubit.cartModel!.data!.cartItems!.length,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
-                              separatorBuilder: (context, index) => SizedBox(
+                              separatorBuilder: (context, index) =>const SizedBox(
                                 height: 10,
                               ),
                               itemBuilder: (context, index) =>
                                   Dismissible(
                                     key: UniqueKey(),
                                       background: Container(
-                                        child: Row(
+                                        color: Colors.red,
+                                        height: 150,
+                                        child:const Row(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(left: 28.0),
+                                              padding: EdgeInsets.only(left: 28.0),
                                               child: Icon(Icons.delete,color: Colors.white
                                                 ,size: 50,),
                                             ),
                                           ],
                                         ),
-                                        color: Colors.red,
-                                        height: 150,
                                       ),
                                       onDismissed: (direction) {
                                         cubit.ChangeCartData(cubit.cartModel!
                                             .data!.cartItems![index].product!.id as int);
                                       },
                                       child: buildFavourite(cubit.cartModel!, index, cubit))),
-                          SizedBox(height: 80,),
+                          const SizedBox(height: 80,),
                         ],
                       ),
                     ),
@@ -131,13 +131,13 @@ class CartScreen extends StatelessWidget {
                         ),
                         child: Image.asset('assets/images/cart.png'),
                       ),
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       Text('Your cart is empty',style: GoogleFonts.montserrat(
                           fontWeight: FontWeight.bold,
                           color:Colors.black,
                           fontSize: 20
                       ),),
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -155,7 +155,7 @@ class CartScreen extends StatelessWidget {
                 ),
               );
             },
-            fallback: (context) => Center(child: CircularProgressIndicator(color: color,)),
+            fallback: (context) =>const Center(child: CircularProgressIndicator(color: color,)),
           ),
         );
       },
@@ -194,13 +194,13 @@ class CartScreen extends StatelessWidget {
                       color: color,
                       child: Text(
                         'Discount'.toUpperCase(),
-                        style: TextStyle(fontSize: 12, color: Colors.white),
+                        style:const TextStyle(fontSize: 12, color: Colors.white),
                       ),
                     ),
                   ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Expanded(
@@ -213,12 +213,12 @@ class CartScreen extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       '${cartModel.data!.cartItems![index].product!.name}',
-                      style: TextStyle(
+                      style:const TextStyle(
                         fontSize: 16,
                       ),
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   Row(
 
                     children: [
@@ -226,21 +226,21 @@ class CartScreen extends StatelessWidget {
                         "\$${cartModel.data!.cartItems![index].product!.price}",
                         style: TextStyle(fontSize: 15, color: color),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
                       Text(
                         "\$${cartModel.data!.cartItems![index].product!.oldPrice}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 13,
                             color: Colors.grey,
                             decoration: TextDecoration.lineThrough),
                       ),
-                      Spacer(),
+                      const Spacer(),
 
                     ],
                   ),
-                  SizedBox(height: 25,),
+                  const SizedBox(height: 15,),
                   Row(
                     children: [
                       Text('Quantity : ${cubit.cartModel!.data!.cartItems![index].quantity}',
@@ -254,6 +254,7 @@ class CartScreen extends StatelessWidget {
                 ],
               ),
             ),
+
           ],
         ),
       ),

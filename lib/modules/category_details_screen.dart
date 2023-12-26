@@ -13,7 +13,7 @@ import '../constants.dart';
 
 class CategoryDetailsScreen extends StatelessWidget {
   String name;
-  CategoryDetailsScreen(this.name);
+  CategoryDetailsScreen(this.name, {super.key});
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LayoutCubit, LayoutState>(
@@ -26,17 +26,17 @@ class CategoryDetailsScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back),
+              icon:const Icon(Icons.arrow_back),
             ),
-            systemOverlayStyle: SystemUiOverlayStyle(
+            systemOverlayStyle:const SystemUiOverlayStyle(
                 statusBarColor: Colors.blue,
                 statusBarIconBrightness: Brightness.light
             ),
             backgroundColor: Colors.blue,
-            iconTheme: IconThemeData(
+            iconTheme:const IconThemeData(
                 color: Colors.white
             ),
-            title: Text(name, style: TextStyle(
+            title: Text(name, style:const TextStyle(
                 fontSize: 25,
                 color: Colors.white
             ),),
@@ -47,7 +47,7 @@ class CategoryDetailsScreen extends StatelessWidget {
             condition: state is! LoadingGetCategoryDetailsDataState,
             builder: (context) {
               return  SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics:const BouncingScrollPhysics(),
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Column(
@@ -55,9 +55,9 @@ class CategoryDetailsScreen extends StatelessWidget {
                     children: [
                       ListView.separated(
                           itemCount: cubit.categoryDetailsModel!.data!.data!.length,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics:const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          separatorBuilder: (context, index) => SizedBox(
+                          separatorBuilder: (context, index) =>const SizedBox(
                             height: 10,
                           ),
                           itemBuilder: (context, index) =>
@@ -67,7 +67,7 @@ class CategoryDetailsScreen extends StatelessWidget {
                 ),
               );
             },
-            fallback: (context) => Center(child: CircularProgressIndicator(color: color,)),
+            fallback: (context) =>const Center(child: CircularProgressIndicator(color: color,)),
           ),
         );
       },
@@ -106,14 +106,14 @@ class CategoryDetailsScreen extends StatelessWidget {
                       color: color,
                       child: Text(
                         'Discount'.toUpperCase(),
-                        style: TextStyle(fontSize: 12, color: Colors.white),
+                        style:const TextStyle(fontSize: 12, color: Colors.white),
                       ),
                     ),
                   ),
 
               ],
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Expanded(
@@ -126,31 +126,31 @@ class CategoryDetailsScreen extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       '${categoryDetailsModel.data!.data![index].name}',
-                      style: TextStyle(
+                      style:const TextStyle(
                         fontSize: 16,
                       ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0,right: 9),
                     child: Row(
                       children: [
                         Text(
                           "\$${categoryDetailsModel.data!.data![index].price}",
-                          style: TextStyle(fontSize: 15, color: color),
+                          style:const TextStyle(fontSize: 15, color: color),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Text(
                           "\$${categoryDetailsModel.data!.data![index].oldPrice}",
-                          style: TextStyle(
+                          style:const TextStyle(
                               fontSize: 15,
                               color: Colors.grey,
                               decoration:TextDecoration.lineThrough),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         InkWell(
                           onTap: () {
                             cubit.ChangeFavouriteData(categoryDetailsModel
@@ -163,7 +163,7 @@ class CategoryDetailsScreen extends StatelessWidget {
                                 true
                                 ? color
                                 : Colors.grey.withOpacity(0.9),
-                            child: Icon(
+                            child: const Icon(
                               size: 17,
                               Icons.favorite_border,
                               color: Colors.white,

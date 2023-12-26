@@ -18,6 +18,7 @@ Widget BuildFormField(
   required TextEditingController Controller,
   required  String? Function(String?)? validator,
     void Function(String value)? ontap,
+  required context,
  VoidCallback ?visibility,
   bool password=false,
   bool change=true,
@@ -29,37 +30,42 @@ Widget BuildFormField(
   bool read=false,
 }
     ){
-  return TextFormField(
-    readOnly: read,
-    onFieldSubmitted:ontap,
-    validator:validator ,
-    obscureText:change?(password?(!login?!cubit!.passwordVisibility:!signUpcubit!.passwordVisibility):false):true,
-    controller:Controller ,
-    decoration: InputDecoration(
-      focusedErrorBorder:OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: color)
-      ) ,
-     errorBorder: OutlineInputBorder(
-       borderRadius: BorderRadius.circular(12),
-       borderSide: BorderSide(color: color)
-     ),
-      focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.blueAccent),
-      ),
-        hintText: hinttext,
-        suffixIcon:InkWell(
-            onTap: visibility,
-            child: Icon(suffixIcon,color: Color(0xFF626262),)) ,
-        prefixIcon:!read ?Icon(prefixIcon,color: Color(0xFF626262),):null,
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFFA8A8A9)),
-          borderRadius: BorderRadius.circular(12),
+  return GestureDetector(
+    onTap: () {
+      FocusScope.of(context).requestFocus(FocusNode());
+    },
+    child: TextFormField(
+      readOnly: read,
+      onFieldSubmitted:ontap,
+      validator:validator ,
+      obscureText:change?(password?(!login?!cubit!.passwordVisibility:!signUpcubit!.passwordVisibility):false):true,
+      controller:Controller ,
+      decoration: InputDecoration(
+        focusedErrorBorder:OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: color)
+        ) ,
+       errorBorder: OutlineInputBorder(
+         borderRadius: BorderRadius.circular(12),
+         borderSide: BorderSide(color: color)
+       ),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.blueAccent),
         ),
-        filled: !read,
-        fillColor: Color(0xFFF3F3F3),
-        border: OutlineInputBorder()
+          hintText: hinttext,
+          suffixIcon:InkWell(
+              onTap: visibility,
+              child: Icon(suffixIcon,color: Color(0xFF626262),)) ,
+          prefixIcon:!read ?Icon(prefixIcon,color: Color(0xFF626262),):null,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFA8A8A9)),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          filled: !read,
+          fillColor: Color(0xFFF3F3F3),
+          border: OutlineInputBorder()
+      ),
     ),
   );
 }
@@ -84,6 +90,7 @@ Widget BuildElevatedButton({
       onPressed:onpress
       , child: loading?Text(text!,
       style: GoogleFonts.montserrat(
+        color: Colors.white,
         fontSize: textsize,
         fontWeight: FontWeight.w600,
       )):SizedBox(

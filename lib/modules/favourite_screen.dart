@@ -24,10 +24,10 @@ class FavouriteScreen extends StatelessWidget {
             condition:cubit.getFavouriteModel!=null,
             builder: (context) {
               return  ConditionalBuilder(
-                condition: cubit.getFavouriteModel!.data!.data!.length!=0,
+                condition: cubit.getFavouriteModel!.data!.data!.isNotEmpty,
                 builder: (context) {
                   return  SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
+                    physics:const BouncingScrollPhysics(),
                     child: Padding(
                       padding: const EdgeInsets.all(18.0),
                       child: Column(
@@ -38,12 +38,12 @@ class FavouriteScreen extends StatelessWidget {
                             style: GoogleFonts.montserrat(fontSize: 22,
                                 fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(height: 20,),
+                          const SizedBox(height: 20,),
                           ListView.separated(
                               itemCount: cubit.getFavouriteModel!.data!.data!.length,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics:const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
-                              separatorBuilder: (context, index) => SizedBox(
+                              separatorBuilder: (context, index) =>const SizedBox(
                                 height: 10,
                               ),
                               itemBuilder: (context, index) =>
@@ -72,13 +72,13 @@ class FavouriteScreen extends StatelessWidget {
                         ),
                         child: Image.asset('assets/images/favourite.png'),
                       ),
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       Text('NO Favourites',style: GoogleFonts.montserrat(
                         fontWeight: FontWeight.bold,
                         color:Colors.black,
                         fontSize: 20
                       ),),
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -97,7 +97,7 @@ class FavouriteScreen extends StatelessWidget {
                 ),
               );
             },
-            fallback: (context) => Center(child: CircularProgressIndicator(color: color,)),
+            fallback: (context) =>const Center(child: CircularProgressIndicator(color: color,)),
           ),
         );
       },
@@ -136,13 +136,13 @@ class FavouriteScreen extends StatelessWidget {
                       color: color,
                       child: Text(
                         'Discount'.toUpperCase(),
-                        style: TextStyle(fontSize: 12, color: Colors.white),
+                        style:const TextStyle(fontSize: 12, color: Colors.white),
                       ),
                     ),
                   ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Expanded(
@@ -155,31 +155,31 @@ class FavouriteScreen extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       '${getFavouriteModel.data!.data![index].product!.name}',
-                      style: TextStyle(
+                      style:const TextStyle(
                         fontSize: 16,
                       ),
                     ),
                   ),
-                 Spacer(),
+                  const Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0,right: 9),
                     child: Row(
                       children: [
                         Text(
                           "\$${getFavouriteModel.data!.data![index].product!.price}",
-                          style: TextStyle(fontSize: 15, color: color),
+                          style:const TextStyle(fontSize: 15, color: color),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Text(
                           "\$${getFavouriteModel.data!.data![index].product!.oldPrice}",
-                          style: TextStyle(
+                          style:const TextStyle(
                               fontSize: 13,
                               color: Colors.grey,
                               decoration: TextDecoration.lineThrough),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         InkWell(
                           onTap: () {
                             cubit.ChangeFavouriteData(getFavouriteModel
@@ -192,7 +192,7 @@ class FavouriteScreen extends StatelessWidget {
                                     true
                                 ? color
                                 : Colors.grey.withOpacity(0.9),
-                            child: Icon(
+                            child:const Icon(
                               size: 17,
                               Icons.favorite_border,
                               color: Colors.white,

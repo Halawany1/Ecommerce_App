@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,15 +10,16 @@ import '../constants.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
-  void OnSubmit(context){
-    CacheHelper.SaveData(key: onboardingkey, value: true).then((value) {
+  void onSubmit(context){
+    CacheHelper.saveData(key: onboardingkey, value: true).then((value) {
       if(value!){
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder:(context) => LoginScreen(), ));
+            MaterialPageRoute(builder:(context) => const LoginScreen(), ));
       }
     });
 
   }
+  @override
   Widget build(BuildContext context) {
 
     var splashController=PageController();
@@ -30,10 +30,10 @@ class OnboardingScreen extends StatelessWidget {
           appBar: buildAppBar(cubit.index,context),
           body: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 660,
                 child: PageView.builder(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   controller: splashController,
                   onPageChanged: (value) {
                     if(value==text.length-1){
@@ -45,29 +45,29 @@ class OnboardingScreen extends StatelessWidget {
                     print(cubit.last);
                   },
                   itemBuilder: (context, index) =>
-                      buildsplash(index) ,
+                      buildSplash(index) ,
                   itemCount: text.length,),
               ),
               Padding(
-                padding: const EdgeInsets.all(18.0),
+                padding:const  EdgeInsets.all(18),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
                       onTap:cubit.index>0? () {
                         splashController.previousPage(
-                            duration: Duration( milliseconds: 800),
+                            duration: const Duration( milliseconds: 800),
                             curve: Curves.fastLinearToSlowEaseIn);
                       }:null,
                       child: Text("Prev",style: TextStyle(
                         fontSize: 18,
-                        color: cubit.index>0?Color(0xFFC4C4C4):Colors.white,
+                        color: cubit.index>0?const Color(0xFFC4C4C4):Colors.white,
                         fontWeight: FontWeight.bold
                       ),),
                     ),
-                    Spacer(),
-                    SmoothPageIndicator(
-                      effect: ExpandingDotsEffect(
+                    const Spacer(),
+                     SmoothPageIndicator(
+                      effect:const ExpandingDotsEffect(
                         dotColor: Colors.grey,
                         dotHeight: 10,
                         expansionFactor: 5,
@@ -77,18 +77,19 @@ class OnboardingScreen extends StatelessWidget {
                       controller: splashController,
                         count: text.length,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     TextButton(onPressed: () {
                       if(cubit.last==true){
-                        OnSubmit(context);
+                        onSubmit(context);
                       }else {
                         splashController.nextPage(
-                            duration: Duration(
+                            duration: const Duration(
                                 milliseconds: 800
                             ),
                             curve: Curves.fastLinearToSlowEaseIn);
                       }
-                    }, child: Text(cubit.last?"Get Started":"Next",style: TextStyle(
+                    }, child: Text(cubit.last?"Get Started":"Next",
+                      style:const TextStyle(
                       fontSize: 18,
                       color: color
                     ),))
@@ -100,28 +101,29 @@ class OnboardingScreen extends StatelessWidget {
           ),
         );
       },
+
       listener: (context, state) {
 
       },
     );
   }
 
-  Widget buildsplash(int index) {
+  Widget buildSplash(int index) {
     return Padding(
-      padding: const EdgeInsets.only(top: 80.0),
+      padding:  EdgeInsets.only(top: 80),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             width:double.infinity ,
               height:300 ,
               child: Image.asset("assets/images/onboarding${index+1}.png")),
-          SizedBox(height: 20,),
-          Text(text[index],style: TextStyle(
+          const SizedBox(height: 20,),
+          Text(text[index],style: const TextStyle(
             fontWeight: FontWeight.w900,
             fontSize: 24
           ),),
-          SizedBox(height: 10,),
-          Text("Amet minim mollit non deserunt ullamco est\n "
+          const SizedBox(height: 10,),
+          const Text("Amet minim mollit non deserunt ullamco est\n "
               "\t\t\tsit aliqua dolor do amet sint."
               " Velit officia\n"
               " \t\t\t\t\t\t\t\t\t\tconsequat duis enim velit mollit.",style: TextStyle(
@@ -140,10 +142,10 @@ class OnboardingScreen extends StatelessWidget {
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 5.0),
-          child: Container(
+          child: SizedBox(
             width: 60,
             child: IconButton(onPressed: () {
-              OnSubmit(context);
+              onSubmit(context);
             }, icon:Text(
               "Skip",
               style: GoogleFonts.montserrat(
@@ -156,7 +158,7 @@ class OnboardingScreen extends StatelessWidget {
         )
       ],
       leading:Padding(
-        padding: const EdgeInsets.only(left: 18.0),
+        padding:const  EdgeInsets.only(left: 18),
         child: Row(
           children: [
             Text("${changescreen+1}",

@@ -54,6 +54,7 @@ dependencies:
 
 
 
+
 dev_dependencies:
   animated_splash_screen: ^1.3.0
 

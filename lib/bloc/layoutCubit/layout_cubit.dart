@@ -41,7 +41,7 @@ class LayoutCubit extends Cubit<LayoutState> {
     cartscreen=false;
     emit(ChangeNavBarState());
   }
-  List<Widget>screens=[
+  List<Widget>screens=const[
     HomeScreen(),
     FavouriteScreen(),
     SearchScreen(),
@@ -52,6 +52,7 @@ class LayoutCubit extends Cubit<LayoutState> {
   HomeModel ?homeModel;
   Categories ?categoryModel;
   Map<int,bool>favourites={};
+
   void GetHomeData(){
     emit(LoadingHomeDataState());
    DioHelper.GetData(url: home,

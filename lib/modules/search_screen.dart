@@ -1,5 +1,4 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,12 +24,13 @@ class SearchScreen extends StatelessWidget {
         return Scaffold(
             backgroundColor: backgroundColor,
             body: Padding(
-              padding: const EdgeInsets.all(28.0),
+              padding: const EdgeInsets.all(25.0),
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     BuildFormField(
+                        context: context,
                         prefixIcon: Icons.search,
                         ontap: (value) {
                           cubit.searchModel = null;
@@ -42,12 +42,12 @@ class SearchScreen extends StatelessWidget {
                     ConditionalBuilder(
                       condition: cubit.searchModel != null,
                       builder: (context) {
-                        return cubit.searchModel!.data!.data!.length>0?
+                        return cubit.searchModel!.data!.data!.isNotEmpty?
                         ListView.separated(
                             itemCount: cubit.searchModel!.data!.data!.length,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics:const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            separatorBuilder: (context, index) => SizedBox(
+                            separatorBuilder: (context, index) =>const SizedBox(
                                   height: 10,
                                 ),
                             itemBuilder: (context, index) => InkWell(
@@ -74,13 +74,13 @@ class SearchScreen extends StatelessWidget {
                                 ),
                                 child: Image.asset('assets/images/search.png'),
                               ),
-                              SizedBox(height: 20,),
+                              const SizedBox(height: 20,),
                               Text('Result Not Found',style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color:Colors.black,
                                   fontSize: 20
                               ),),
-                              SizedBox(height: 20,),
+                              const SizedBox(height: 20,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -88,8 +88,8 @@ class SearchScreen extends StatelessWidget {
                                     style: GoogleFonts.montserrat(
                                         color:Colors.grey,
                                         fontWeight: FontWeight.w500,
-                                        fontSize: 17,
-                                        height: 1.6
+                                        fontSize: 14,
+                                        height: 1.5
                                     ),),
                                 ],
                               )
@@ -99,8 +99,8 @@ class SearchScreen extends StatelessWidget {
                       },
                       fallback: (context) => ConditionalBuilder(
                         condition: searchController.text.isNotEmpty,
-                        builder: (context) => Padding(
-                          padding: const EdgeInsets.all(28.0),
+                        builder: (context) =>const Padding(
+                          padding:  EdgeInsets.all(28.0),
                           child: LinearProgressIndicator(
                             color: color,
                           ),
@@ -117,13 +117,13 @@ class SearchScreen extends StatelessWidget {
                                 ),
                                 child: Image.asset('assets/images/search.png'),
                               ),
-                              SizedBox(height: 20,),
+                              const SizedBox(height: 20,),
                               Text('Result Not Found',style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color:Colors.black,
                                   fontSize: 20
                               ),),
-                              SizedBox(height: 20,),
+                              const SizedBox(height: 20,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -184,13 +184,13 @@ class SearchScreen extends StatelessWidget {
                         color: color,
                         child: Text(
                           'Discount'.toUpperCase(),
-                          style: TextStyle(fontSize: 12, color: Colors.white),
+                          style:const TextStyle(fontSize: 12, color: Colors.white),
                         ),
                       ),
                     ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Expanded(
@@ -203,21 +203,21 @@ class SearchScreen extends StatelessWidget {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         '${searchModel.data!.data![index].name}',
-                        style: TextStyle(
+                        style:const TextStyle(
                           fontSize: 16,
                         ),
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8.0, right: 9),
                       child: Row(
                         children: [
                           Text(
                             "\$${searchModel.data!.data![index].price}",
-                            style: TextStyle(fontSize: 15, color: color),
+                            style:const TextStyle(fontSize: 15, color: color),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           InkWell(
                             onTap: () {
                               cubit.ChangeFavouriteData(
@@ -230,7 +230,7 @@ class SearchScreen extends StatelessWidget {
                                       true
                                   ? color
                                   : Colors.grey.withOpacity(0.9),
-                              child: Icon(
+                              child:const Icon(
                                 size: 17,
                                 Icons.favorite_border,
                                 color: Colors.white,

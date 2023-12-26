@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -50,7 +49,7 @@ class HomeScreen extends StatelessWidget {
               builder: (context) {
                 return buildColumn(cubit.homeModel, cubit.categoryModel, cubit, context);
               },
-              fallback: (context) => Center(
+              fallback: (context) =>const Center(
                   child: CircularProgressIndicator(
                 color: color,
               )),
@@ -68,7 +67,7 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             buildCarouselSlider(homeModel),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -78,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                   style: GoogleFonts.montserrat(
                       fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-                Spacer(),
+                const Spacer(),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFFF83758),
@@ -91,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                             builder: (context) => CategoriesScreen(),
                           ));
                     },
-                    child: Row(
+                    child:const Row(
                       children: [
                         Text(
                           'View All',
@@ -109,13 +108,13 @@ class HomeScreen extends StatelessWidget {
                     ))
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 35,
             ),
-            Container(
+            SizedBox(
               height: 120,
               child: ListView.separated(
-                  physics: BouncingScrollPhysics(),
+                  physics:const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     String category="";
@@ -127,12 +126,12 @@ class HomeScreen extends StatelessWidget {
                     }
                     return buildCategories(cubit,index,context,category);
                   },
-                  separatorBuilder: (context, index) => SizedBox(
+                  separatorBuilder: (context, index) =>const SizedBox(
                         width: 15,
                       ),
                   itemCount: categoryModel!.data!.data!.length),
             ),
-            SizedBox(
+            const SizedBox(
               height: 35,
             ),
             Text(
@@ -140,13 +139,13 @@ class HomeScreen extends StatelessWidget {
               style: GoogleFonts.montserrat(
                   fontSize: 22, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 35,
             ),
             GridView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics:const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 0.59,
                   mainAxisSpacing: 15,
                   crossAxisSpacing: 6,
@@ -188,14 +187,14 @@ class HomeScreen extends StatelessWidget {
                                   color: color,
                                   child: Text(
                                     'Discount'.toUpperCase(),
-                                    style: TextStyle(
+                                    style:const TextStyle(
                                         fontSize: 12, color: Colors.white),
                                   ),
                                 ),
                               ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Padding(
@@ -204,12 +203,12 @@ class HomeScreen extends StatelessWidget {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             '${homeModel.data!.products?[index].name}',
-                            style: TextStyle(
+                            style:const TextStyle(
                               fontSize: 16,
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Padding(
@@ -218,19 +217,19 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               Text(
                                 "\$${homeModel.data!.products?[index].price}",
-                                style: TextStyle(fontSize: 15, color: color),
+                                style:const TextStyle(fontSize: 15, color: color),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text(
                                 "\$${homeModel.data!.products?[index].oldPrice}",
-                                style: TextStyle(
+                                style:const TextStyle(
                                     fontSize: 13,
                                     color: Colors.grey,
                                     decoration: TextDecoration.lineThrough),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               InkWell(
                                 onTap: () {
                                   cubit.ChangeFavouriteData(
@@ -245,7 +244,7 @@ class HomeScreen extends StatelessWidget {
                                           true
                                       ? color
                                       : Colors.grey.withOpacity(0.9),
-                                  child: Icon(
+                                  child:const Icon(
                                     size: 17,
                                     Icons.favorite_border,
                                     color: Colors.white,
@@ -301,7 +300,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 15,),
+        const SizedBox(height: 15,),
         Text(
           maxLines: 3,
           category,
@@ -318,7 +317,7 @@ class HomeScreen extends StatelessWidget {
                   width: 360,
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
-                      color: Color(0xFFFDFDFD),
+                      color:const Color(0xFFFDFDFD),
                       borderRadius: BorderRadius.circular(15)),
                   child: Image(
                     image: NetworkImage('${e.image}'),
@@ -330,8 +329,8 @@ class HomeScreen extends StatelessWidget {
           height: 220,
           scrollDirection: Axis.horizontal,
           autoPlay: true,
-          autoPlayInterval: Duration(seconds: 3),
-          autoPlayAnimationDuration: Duration(seconds: 1),
+          autoPlayInterval:const Duration(seconds: 3),
+          autoPlayAnimationDuration:const Duration(seconds: 1),
           autoPlayCurve: Curves.fastOutSlowIn,
           viewportFraction: 1,
           enableInfiniteScroll: true,

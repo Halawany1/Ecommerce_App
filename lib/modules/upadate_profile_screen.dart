@@ -39,12 +39,12 @@ class UpdateProfileScreen extends StatelessWidget {
         var cubit = context.read<UserCubit>();
         return Scaffold(
             appBar: AppBar(
-              systemOverlayStyle: SystemUiOverlayStyle(
+              systemOverlayStyle: const SystemUiOverlayStyle(
                   statusBarColor: Colors.blue,
                   statusBarIconBrightness: Brightness.light),
               backgroundColor: Colors.blue,
-              iconTheme: IconThemeData(color: Colors.white),
-              title: Text(
+              iconTheme:const IconThemeData(color: Colors.white),
+              title:const Text(
                 "Update Profile",
                 style: TextStyle(fontSize: 25, color: Colors.white),
               ),
@@ -61,7 +61,7 @@ class UpdateProfileScreen extends StatelessWidget {
                 passwordController.text = '************';
                 data=true;
                 return SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   child: Padding(
                     padding: const EdgeInsets.all(28.0),
                     child: Form(
@@ -70,17 +70,18 @@ class UpdateProfileScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           buildCirclePhoto(),
-                          SizedBox(
+                          const SizedBox(
                             height: 40,
                           ),
                           Text(
                             'Name',
                             style: GoogleFonts.montserrat(fontSize: 15),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           BuildFormField(
+                              context: context,
                             prefixIcon: Icons.person,
                               Controller: nameController,
                               validator: (value) {
@@ -89,17 +90,18 @@ class UpdateProfileScreen extends StatelessWidget {
                                 }
                                 return null;
                               }),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Text(
                             'Email Address',
                             style: GoogleFonts.montserrat(fontSize: 15),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           BuildFormField(
+                              context: context,
                               prefixIcon: Icons.email,
                               Controller: emailController,
                               validator: (value) {
@@ -108,31 +110,33 @@ class UpdateProfileScreen extends StatelessWidget {
                                 }
                                 return null;
                               }),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Text(
                             'Password',
                             style: GoogleFonts.montserrat(fontSize: 15),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           BuildFormField(
+                              context: context,
                               read: true,
                               Controller: passwordController,
                               validator: null),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Text(
                             'Phone',
                             style: GoogleFonts.montserrat(fontSize: 15),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           BuildFormField(
+                              context: context,
                               prefixIcon: Icons.phone,
                               Controller: phoneController,
                               validator: (value) {

@@ -26,27 +26,27 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DioHelper.Init();
   Bloc.observer = MyBlocObserver();
-  await CacheHelper.Init();
-  //CacheHelper.DeletAllData();
+  await CacheHelper.init();
+  //CacheHelper.deleteAllData();
   Widget widget;
-  bool onboarding = CacheHelper.GetData(key: onboardingkey, value: bool) ?? false;
-  token = CacheHelper.GetData(key: tokenkey, value: String) ?? "";
+  bool onBoarding = CacheHelper.getData(key: onboardingkey) ?? false;
+  token = CacheHelper.getData(key: tokenkey) ?? "";
   print(token);
-  if (onboarding != false) {
+  if (onBoarding != false) {
     if (token != "") {
-      widget = LayoutScreen();
+      widget = const LayoutScreen();
     } else {
-      widget = LoginScreen();
+      widget = const LoginScreen();
     }
   } else {
-    widget = OnboardingScreen();
+    widget = const OnboardingScreen();
   }
   runApp(MyApp(widget));
 }
 
 class MyApp extends StatelessWidget {
   Widget widget;
-  MyApp(this.widget);
+  MyApp(this.widget, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,13 +69,13 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         home: AnimatedSplashScreen(
-          animationDuration: Duration(milliseconds: 500),
+          animationDuration: const Duration(milliseconds: 500),
           pageTransitionType: PageTransitionType.fade,
           backgroundColor: Colors.white,
-          splash: Container(
+          splash:const SizedBox(
             width: 274,
             height: 100,
-            child: Image(
+            child:  Image(
               image: AssetImage("assets/images/splash.png"),
             ),
           ),

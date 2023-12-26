@@ -30,12 +30,12 @@ class ProfileScreen extends StatelessWidget {
 
         return Scaffold(
             appBar: AppBar(
-              systemOverlayStyle: SystemUiOverlayStyle(
+              systemOverlayStyle:const SystemUiOverlayStyle(
                   statusBarColor: Colors.blue,
                   statusBarIconBrightness: Brightness.light),
               backgroundColor: Colors.blue,
-              iconTheme: IconThemeData(color: Colors.white),
-              title: Text(
+              iconTheme:const IconThemeData(color: Colors.white),
+              title:const Text(
                 "Profile",
                 style: TextStyle(fontSize: 25, color: Colors.white),
               ),
@@ -49,14 +49,14 @@ class ProfileScreen extends StatelessWidget {
                 phoneController.text = cubit.userModel!.data!.phone!;
                 passwordController.text = '************';
                 return SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                  physics:const BouncingScrollPhysics(),
                   child: Padding(
                     padding: const EdgeInsets.all(28.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         buildCirclePhoto(),
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                         ),
                         Text(
@@ -64,49 +64,52 @@ class ProfileScreen extends StatelessWidget {
                           style: GoogleFonts.montserrat(
                               fontSize: 22, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Text(
                           'Name',
                           style: GoogleFonts.montserrat(fontSize: 15),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         BuildFormField(
+                            context: context,
                             read: true,
                             Controller: nameController,
                             validator: null),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Text(
                           'Email Address',
                           style: GoogleFonts.montserrat(fontSize: 15),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         BuildFormField(
+                            context: context,
                             read: true,
                             Controller: emailController,
                             validator: null),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Text(
                           'Password',
                           style: GoogleFonts.montserrat(fontSize: 15),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         BuildFormField(
+                            context: context,
                             read: true,
                             Controller: passwordController,
                             validator: null),
-                        SizedBox(
+                        const  SizedBox(
                           height: 15,
                         ),
                         Row(
@@ -118,7 +121,7 @@ class ProfileScreen extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          ChangePasswordScreen(),
+                                          const ChangePasswordScreen(),
                                     ));
                               },
                               child: Text(
@@ -133,21 +136,22 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
                           'Phone',
                           style: GoogleFonts.montserrat(fontSize: 15),
                         ),
-                        SizedBox(
+                        const  SizedBox(
                           height: 20,
                         ),
                         BuildFormField(
+                            context: context,
                             read: true,
                             Controller: phoneController,
                             validator: null),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         BuildElevatedButton(
@@ -155,22 +159,22 @@ class ProfileScreen extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => UpdateProfileScreen(),
+                                    builder: (context) =>const UpdateProfileScreen(),
                                   ));
                             },
                             text: 'Update Profile'),
-                        SizedBox(
+                        const   SizedBox(
                           height: 20,
                         ),
                         BuildElevatedButton(
                             onpress: () {
-                              CacheHelper.RemoveData(key: tokenkey)
+                              CacheHelper.removeData(key: tokenkey)
                                   .then((value) {
                                 if (value == true) {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => LoginScreen(),
+                                        builder: (context) =>const LoginScreen(),
                                       ));
                                 }
                               });
@@ -181,7 +185,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 );
               },
-              fallback: (context) => Center(
+              fallback: (context) =>const Center(
                   child: CircularProgressIndicator(
                 color: color,
               )),
@@ -212,7 +216,7 @@ class ProfileScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     border: Border.all(color: Colors.white)),
-                child: CircleAvatar(
+                child:const CircleAvatar(
                   radius: 16,
                   child: Icon(Icons.edit),
                 ),

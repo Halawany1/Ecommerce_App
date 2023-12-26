@@ -18,27 +18,27 @@ class CategoriesScreen extends StatelessWidget {
         var cubit = context.read<LayoutCubit>();
         return Scaffold(
             appBar: AppBar(
-              systemOverlayStyle: SystemUiOverlayStyle(
+              systemOverlayStyle:const SystemUiOverlayStyle(
                   statusBarColor: Colors.blue,
                   statusBarIconBrightness: Brightness.light
               ),
               backgroundColor: Colors.blue,
-              iconTheme: IconThemeData(
+              iconTheme:const IconThemeData(
                   color: Colors.white
               ),
-              title: Text("Categories", style: TextStyle(
+              title:const Text("Categories", style: TextStyle(
                   fontSize: 25,
                   color: Colors.white
               ),),
               centerTitle: true,
             ),
-            backgroundColor: Color(0xFFF9F9F9),
+            backgroundColor:const Color(0xFFF9F9F9),
             body: Padding(
               padding: const EdgeInsets.all(20.0),
               child: ListView.separated(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
-                  physics: BouncingScrollPhysics(),
+                  physics:const BouncingScrollPhysics(),
                   itemBuilder: (context, index) =>
                       InkWell(
                         onTap: () {
@@ -61,16 +61,16 @@ class CategoriesScreen extends StatelessWidget {
                                     .image}',
                               ),
                             ),
-                            SizedBox(width: 15,),
+                            const SizedBox(width: 15,),
                             Text('${cubit.categoryModel!.data!.data![index]
                                 .name}',
                               style: GoogleFonts.montserrat(
                                   fontSize: 16, fontWeight: FontWeight.bold),),
-                            Spacer(),
-                            Icon(Icons.arrow_forward_ios_rounded)
+                            const Spacer(),
+                            const Icon(Icons.arrow_forward_ios_rounded)
                           ],),
                       ),
-                  separatorBuilder: (context, index) => Divider(thickness: 1,),
+                  separatorBuilder: (context, index) =>const Divider(thickness: 1,),
                   itemCount: cubit.categoryModel!.data!.data!.length),
             )
         );

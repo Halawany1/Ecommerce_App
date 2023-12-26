@@ -43,7 +43,7 @@ class SettingsScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       buildMaterialpersonal(cubit,context),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
                       Row(
@@ -56,12 +56,12 @@ class SettingsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       ListView.separated(
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics:const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             return InkWell(
                               onTap: () {
@@ -75,14 +75,14 @@ class SettingsScreen extends StatelessWidget {
                             );
                           },
                           separatorBuilder: (context, index) =>
-                              SizedBox(height: 20,),
+                          const  SizedBox(height: 20,),
                           itemCount: accountData.length)
                     ],
                   ),
                 ),
               );
             },
-            fallback: (context) => Center(child: CircularProgressIndicator(color: color,)),
+            fallback: (context) =>const Center(child: CircularProgressIndicator(color: color,)),
           ),
         );
       },
@@ -93,7 +93,7 @@ class SettingsScreen extends StatelessWidget {
   Widget buildMaterialpersonal(UserCubit cubit,context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) =>ProfileScreen(),));
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>const ProfileScreen(),));
       },
       child: Material(
         elevation: 5,
@@ -114,7 +114,7 @@ class SettingsScreen extends StatelessWidget {
                     height: 60,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Column(
@@ -128,7 +128,7 @@ class SettingsScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
@@ -139,8 +139,8 @@ class SettingsScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                Spacer(),
-                Icon(
+                const Spacer(),
+                const  Icon(
                   Icons.arrow_forward_ios_rounded,
                   size: 25,
                   color: Colors.black45,

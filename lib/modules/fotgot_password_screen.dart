@@ -29,10 +29,11 @@ class ForgotPasswordScreen extends StatelessWidget {
                   Text("Forgot\npassword?",
                       style: GoogleFonts.alice(
                           fontSize: 45, fontWeight: FontWeight.w800)),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   BuildFormField(
+                      context: context,
                       hinttext: "Enter your email address",
                       prefixIcon: Icons.email,
                       Controller: emailController,
@@ -43,10 +44,10 @@ class ForgotPasswordScreen extends StatelessWidget {
                         return null;
                       }),
 
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Padding(
+                  const Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -68,7 +69,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   BuildElevatedButton(

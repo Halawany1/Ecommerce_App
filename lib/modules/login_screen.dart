@@ -27,7 +27,7 @@ class LoginScreen extends StatelessWidget {
           if (state.loginModel.status == true) {
             print(state.loginModel.message);
             print(state.loginModel.data!.token);
-            CacheHelper.SaveData(key: tokenkey, value:state.loginModel.data!.token).then((value) {
+            CacheHelper.saveData(key: tokenkey, value:state.loginModel.data!.token).then((value) {
               if(value!) {
                 Navigator.pushReplacement(
                     context,
@@ -48,7 +48,8 @@ class LoginScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Padding(
                 padding:
-                const EdgeInsets.only(top: 40.0, left: 20, right: 20),
+                const EdgeInsets.only(top: 40, left: 18,
+                     right: 18),
                 child: Form(
                   key: formKey,
                   child: Column(
@@ -56,11 +57,12 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       Text("Welcome\nBack!",
                           style: GoogleFonts.alice(
-                              fontSize: 45, fontWeight: FontWeight.w800)),
-                      SizedBox(
-                        height: 50,
+                              fontSize: 42, fontWeight: FontWeight.w800)),
+                      const SizedBox(
+                        height: 46,
                       ),
                       BuildFormField(
+                          context: context,
                           cubit: cubit,
                           hinttext: "Email",
                           prefixIcon: Icons.email,
@@ -71,10 +73,11 @@ class LoginScreen extends StatelessWidget {
                             }
                             return null;
                           }),
-                      SizedBox(
-                        height: 30,
+                      const SizedBox(
+                        height: 28,
                       ),
                       BuildFormField(
+                          context: context,
                           cubit: cubit,
                           visibility: () {
                             cubit.ChangePasswordVisibility();
@@ -92,8 +95,8 @@ class LoginScreen extends StatelessWidget {
                             }
                             return null;
                           }),
-                      SizedBox(
-                        height: 10,
+                      const SizedBox(
+                        height: 8,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -102,18 +105,18 @@ class LoginScreen extends StatelessWidget {
                             onTap: () {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) =>
-                                      ForgotPasswordScreen(),));
+                                  const ForgotPasswordScreen(),));
                             },
-                            child: Text(
+                            child:const Text(
                               "Forgot Password?",
                               style: TextStyle(
-                                  fontSize: 14, color: color),
+                                  fontSize: 12, color: color),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 50,
+                      const SizedBox(
+                        height: 42,
                       ),
                       ConditionalBuilder(
                         builder: (context) {
@@ -133,8 +136,8 @@ class LoginScreen extends StatelessWidget {
                                 onpress: () {
                                 }),
                       ),
-                      SizedBox(
-                        height: 60,
+                      const SizedBox(
+                        height: 52,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -142,43 +145,43 @@ class LoginScreen extends StatelessWidget {
                           Text(
                             "- OR Continue with -",
                             style: GoogleFonts.montserrat(
-                                color: Color(0xFF575757),
+                                color: const Color(0xFF575757),
                                 fontWeight: FontWeight.w500
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 25,
+                      const SizedBox(
+                        height: 21,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           BuildCircleIcons(image: "google.png"),
-                          SizedBox(width: 12,),
+                          const SizedBox(width: 10,),
                           BuildCircleIcons(image: "apple.png"),
-                          SizedBox(width: 12,),
+                          const SizedBox(width: 10,),
                           BuildCircleIcons(image: "facebook.png"),
                         ],),
-                      SizedBox(
-                        height: 30,
+                      const SizedBox(
+                        height: 28,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("Create An Account",
                             style: GoogleFonts.montserrat(
-                                color: Color(0xFF575757),
+                                color: const Color(0xFF575757),
                                 fontWeight: FontWeight.w500
                             ),),
-                          SizedBox(width: 5,),
+                          const  SizedBox(width: 5,),
                           InkWell(
                             onTap: () {
                               emailController.clear();
                               passwordController.clear();
-                              Navigator.push(context,
+                              Navigator.pushReplacement(context,
                                   MaterialPageRoute(
-                                    builder: (context) => SignUpScreen(),));
+                                    builder: (context) =>const  SignUpScreen(),));
                             },
                             child: Text("Sign Up",
 

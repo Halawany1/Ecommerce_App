@@ -36,12 +36,12 @@ class ChangePasswordScreen extends StatelessWidget {
         var cubit = context.read<UserCubit>();
         return Scaffold(
             appBar: AppBar(
-              systemOverlayStyle: SystemUiOverlayStyle(
+              systemOverlayStyle:const SystemUiOverlayStyle(
                   statusBarColor: Colors.blue,
                   statusBarIconBrightness: Brightness.light),
               backgroundColor: Colors.blue,
-              iconTheme: IconThemeData(color: Colors.white),
-              title: Text(
+              iconTheme:const IconThemeData(color: Colors.white),
+              title:const Text(
                 "Change Password",
                 style: TextStyle(fontSize: 25, color: Colors.white),
               ),
@@ -58,8 +58,9 @@ class ChangePasswordScreen extends StatelessWidget {
                       'Current Password',
                       style: GoogleFonts.montserrat(fontSize: 15),
                     ),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     BuildFormField(
+                      context: context,
                         hinttext: "*********",
                         password: true,
                         change: false,
@@ -72,13 +73,14 @@ class ChangePasswordScreen extends StatelessWidget {
                           }
                           return null;
                         }),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     Text(
                       'New Password',
                       style: GoogleFonts.montserrat(fontSize: 15),
                     ),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     BuildFormField(
+                        context: context,
                         change: false,
                         hinttext: "At least 6 digit",
                         password: true,
@@ -91,7 +93,7 @@ class ChangePasswordScreen extends StatelessWidget {
                           }
                           return null;
                         }),
-                    SizedBox(height: 50,),
+                    const SizedBox(height: 50,),
                     state is LoadingChangePasswordDataState?
                     BuildElevatedButton(
                       loading: false,
